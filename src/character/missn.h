@@ -7,7 +7,7 @@
 #ifndef _MISSN_H
 #define _MISSN_H
 
-#include "../character.h"
+#include "../goldanim.h"
 
 //Clucky character functions
 Character *Char_MissN_New(fixed_t x, fixed_t y);

@@ -57,7 +57,7 @@ iso/bf/weeb.arc: iso/bf/weeb0.tim iso/bf/weeb1.tim
 iso/dad/main.arc: iso/dad/idle0.tim iso/dad/idle1.tim iso/dad/left.tim iso/dad/down.tim iso/dad/up.tim iso/dad/right.tim
 
 # Gold
-iso/gold/main.arc: iso/gold/idle0.tim iso/gold/idle1.tim iso/gold/idle2.tim iso/gold/idle3.tim iso/gold/idle4.tim iso/gold/idle5.tim iso/gold/idle6.tim iso/gold/left0.tim iso/gold/left1.tim iso/gold/left2.tim iso/gold/left3.tim iso/gold/down0.tim iso/gold/down1.tim iso/gold/down2.tim iso/gold/down3.tim iso/gold/up0.tim iso/gold/up1.tim iso/gold/right0.tim iso/gold/right1.tim iso/gold/right2.tim iso/gold/right3.tim iso/gold/right4.tim
+iso/gold/main.arc: iso/gold/idle0.tim iso/gold/idle1.tim iso/gold/idle2.tim iso/gold/idle3.tim iso/gold/idle4.tim iso/gold/idle5.tim iso/gold/idle6.tim iso/gold/left0.tim iso/gold/left1.tim iso/gold/left2.tim iso/gold/left3.tim iso/gold/down0.tim iso/gold/down1.tim iso/gold/down2.tim iso/gold/down3.tim iso/gold/up0.tim iso/gold/up1.tim iso/gold/right0.tim iso/gold/right1.tim iso/gold/right2.tim iso/gold/right3.tim iso/gold/right4.tim iso/gold/appear0.tim iso/gold/appear1.tim iso/gold/appear2.tim iso/gold/appear3.tim iso/gold/appear4.tim iso/gold/appear5.tim iso/gold/appear6.tim iso/gold/jump0.tim
 
 # Spook
 iso/spook/main.arc: iso/spook/idle0.tim iso/spook/idle1.tim iso/spook/idle2.tim iso/spook/left.tim iso/spook/down.tim iso/spook/up.tim iso/spook/right.tim
@@ -94,7 +94,7 @@ iso/hypno/main.arc: iso/hypno/idle0.tim iso/hypno/idle1.tim iso/hypno/idle2.tim 
 iso/creep/main.arc: iso/creep/idle0.tim iso/creep/idle1.tim iso/creep/idle2.tim iso/creep/idle3.tim iso/creep/idle4.tim iso/creep/idle5.tim iso/creep/idle6.tim iso/creep/left0.tim iso/creep/left1.tim iso/creep/left2.tim iso/creep/left3.tim iso/creep/down0.tim iso/creep/down1.tim iso/creep/down2.tim iso/creep/down3.tim iso/creep/up0.tim iso/creep/up1.tim iso/creep/up2.tim iso/creep/up3.tim iso/creep/right0.tim iso/creep/right1.tim iso/creep/right2.tim iso/creep/right3.tim iso/creep/right4.tim
 
 # MissN
-iso/missn/main.arc: iso/missn/idle0.tim iso/missn/idle1.tim iso/missn/idle2.tim iso/missn/idle3.tim iso/missn/idle4.tim iso/missn/idle5.tim iso/missn/idle6.tim iso/missn/left0.tim iso/missn/left1.tim iso/missn/left2.tim iso/missn/down0.tim iso/missn/down1.tim iso/missn/down2.tim iso/missn/up0.tim iso/missn/up1.tim iso/missn/up2.tim iso/missn/right0.tim iso/missn/right1.tim iso/missn/right2.tim
+iso/missn/main.arc: iso/missn/idle0.tim iso/missn/idle1.tim iso/missn/idle2.tim iso/missn/idle3.tim iso/missn/idle4.tim iso/missn/idle5.tim iso/missn/idle6.tim iso/missn/left0.tim iso/missn/left1.tim iso/missn/down0.tim iso/missn/down1.tim iso/missn/up0.tim iso/missn/up1.tim iso/missn/right0.tim iso/missn/right1.tim iso/missn/appear0.tim iso/missn/appear1.tim iso/missn/appear2.tim iso/missn/appear3.tim iso/missn/appear4.tim
 
 # Clucky
 iso/clucky/main.arc: iso/clucky/idle0.tim iso/clucky/idle1.tim iso/clucky/left.tim iso/clucky/down.tim iso/clucky/up.tim iso/clucky/right.tim

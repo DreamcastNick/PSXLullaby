@@ -553,8 +553,8 @@ void Menu_Tick(void)
 			Menu_DrawBack(
 				menu.next_page == menu.page || menu.next_page == MenuPage_Title,
 				menu.scroll >> (FIXED_SHIFT + 1),
-				253 >> 1, 231 >> 1, 113 >> 1,
-				253 >> 1, 113 >> 1, 155 >> 1
+				255 >> 1, 255 >> 1, 255 >> 1,
+				255 >> 1, 255 >> 1, 255 >> 1
 			);
 			break;
 		}
@@ -778,7 +778,7 @@ void Menu_Tick(void)
 			Menu_DrawBack(
 				true,
 				8,
-				146 >> 1, 113 >> 1, 253 >> 1,
+				255 >> 1, 255 >> 1, 255 >> 1,
 				0, 0, 0
 			);
 			break;
@@ -904,7 +904,7 @@ void Menu_Tick(void)
 			Menu_DrawBack(
 				true,
 				8,
-				197 >> 1, 240 >> 1, 95 >> 1,
+				255 >> 1, 255 >> 1, 255 >> 1,
 				0, 0, 0
 			);
 			break;
@@ -934,11 +934,14 @@ void Menu_Tick(void)
 					} spec_enum;
 				} spec;
 			} menu_options[] = {
-				{OptType_Enum, "GAMEMODE", &stage.mode, {.spec_enum = {StageMode_2P, gamemode_strs}}},
+				{OptType_Enum,    "GAMEMODE", &stage.mode, {.spec_enum = {COUNT_OF(gamemode_strs), gamemode_strs}}},
 				//{OptType_Boolean, "INTERPOLATION", &stage.expsync},
 				{OptType_Boolean, "GHOST TAP ", &stage.ghost, {.spec_boolean = {0}}},
 				{OptType_Boolean, "DOWNSCROLL", &stage.downscroll, {.spec_boolean = {0}}},
 			};
+			
+			if (stage.mode == StageMode_2P)
+			stage.middlescroll = false;
 			
 			//Initialize page
 			if (menu.page_swap)
@@ -1033,7 +1036,7 @@ void Menu_Tick(void)
 			Menu_DrawBack(
 				true,
 				8,
-				253 >> 1, 113 >> 1, 155 >> 1,
+				255 >> 1, 255 >> 1, 255 >> 1,
 				0, 0, 0
 			);
 			break;

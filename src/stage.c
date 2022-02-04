@@ -40,8 +40,26 @@ static const fixed_t note_x[8] = {
 	 FIXED_DEC(-60,1) - FIXED_DEC(SCREEN_WIDEADD,4),
 	 FIXED_DEC(-26,1) - FIXED_DEC(SCREEN_WIDEADD,4),
 };
+
+//middle note x
+static const fixed_t note_xmiddle[8] = {
+	//BF
+	 FIXED_DEC(26,1) + FIXED_DEC(SCREEN_WIDEADD,4),
+	 FIXED_DEC(60,1) + FIXED_DEC(SCREEN_WIDEADD,4),//+34
+	 FIXED_DEC(94,1) + FIXED_DEC(SCREEN_WIDEADD,4),
+	FIXED_DEC(128,1) + FIXED_DEC(SCREEN_WIDEADD,4),
+	//Opponent
+	FIXED_DEC(-256,1) - FIXED_DEC(SCREEN_WIDEADD,4),
+	 FIXED_DEC(-256,1) - FIXED_DEC(SCREEN_WIDEADD,4),//+34
+	 FIXED_DEC(-256,1) - FIXED_DEC(SCREEN_WIDEADD,4),
+	 FIXED_DEC(-256,1) - FIXED_DEC(SCREEN_WIDEADD,4),
+};
+
 static const fixed_t note_y = FIXED_DEC(32 - SCREEN_HEIGHT2, 1);
 static const u16 note_key[] = {INPUT_LEFT, INPUT_DOWN, INPUT_UP, INPUT_RIGHT};
+
+//middlescroll
+int arrowposx,middleswitch;
 
 //Stage definitions
 #include "character/bf.h"
@@ -266,7 +284,7 @@ static u8 Stage_HitNote(PlayerState *this, u8 type, fixed_t offset)
 		{
 			//Create splash object
 			Obj_Splash *splash = Obj_Splash_New(
-				note_x[type ^ stage.note_swap],
+				FIXED_DEC(arrowposx,1) + note_x[type ^ stage.note_swap],
 				note_y * (stage.downscroll ? -1 : 1),
 				type & 0x3
 			);
@@ -807,6 +825,12 @@ static void Stage_DrawNotes(void)
 		}
 		else
 		{
+			if (stage.middlescroll)
+		    middleswitch = note_xmiddle[(note->type & 0x7) ^ stage.note_swap];
+
+		    else
+		    middleswitch = note_x[(note->type & 0x7) ^ stage.note_swap];
+
 			//Don't draw if below screen
 			RECT note_src;
 			RECT_FIXED note_dst;
@@ -840,7 +864,7 @@ static void Stage_DrawNotes(void)
 						note_src.w = 32;
 						note_src.h = 28 - (clip >> FIXED_SHIFT);
 						
-						note_dst.x = note_x[(note->type & 0x7) ^ stage.note_swap] - FIXED_DEC(16,1);
+						note_dst.x = FIXED_DEC(arrowposx,1) + middleswitch - FIXED_DEC(16,1);
 						note_dst.y = y + clip;
 						note_dst.w = note_src.w << FIXED_SHIFT;
 						note_dst.h = (note_src.h << FIXED_SHIFT);
@@ -862,7 +886,7 @@ static void Stage_DrawNotes(void)
 						note_src.w = 32;
 						note_src.h = 16;
 						
-						note_dst.x = note_x[(note->type & 0x7) ^ stage.note_swap] - FIXED_DEC(16,1);
+						note_dst.x = FIXED_DEC(arrowposx,1) + middleswitch - FIXED_DEC(16,1);
 						note_dst.y = y + clip;
 						note_dst.w = note_src.w << FIXED_SHIFT;
 						note_dst.h = scroll.size - clip;
@@ -885,7 +909,7 @@ static void Stage_DrawNotes(void)
 				note_src.w = 32;
 				note_src.h = 32;
 				
-				note_dst.x = note_x[(note->type & 0x7) ^ stage.note_swap] - FIXED_DEC(16,1);
+				note_dst.x = FIXED_DEC(arrowposx,1) + middleswitch - FIXED_DEC(16,1);
 				note_dst.y = y - FIXED_DEC(16,1);
 				note_dst.w = note_src.w << FIXED_SHIFT;
 				note_dst.h = note_src.h << FIXED_SHIFT;
@@ -939,7 +963,7 @@ static void Stage_DrawNotes(void)
 				note_src.w = 32;
 				note_src.h = 32;
 				
-				note_dst.x = note_x[(note->type & 0x7) ^ stage.note_swap] - FIXED_DEC(16,1);
+				note_dst.x = FIXED_DEC(arrowposx,1) + middleswitch - FIXED_DEC(16,1);
 				note_dst.y = y - FIXED_DEC(16,1);
 				note_dst.w = note_src.w << FIXED_SHIFT;
 				note_dst.h = note_src.h << FIXED_SHIFT;
@@ -1216,7 +1240,7 @@ void Stage_Load(StageId id, StageDiff difficulty, boolean story)
 	stage.sbump = FIXED_UNIT;
 	
 	//Initialize stage according to mode
-	stage.note_swap = (stage.mode == StageMode_Swap) ? 4 : 0;
+	stage.note_swap = (stage.mode == StageMode_Swap && (!(stage.middlescroll))) ? 4 : 0;
 	
 	//Load music
 	Stage_LoadMusic();
@@ -1436,6 +1460,12 @@ void Stage_Tick(void)
 	{
 		case StageState_Play:
 		{
+			
+			if (stage.middlescroll)
+				arrowposx = 0;
+			else
+				arrowposx = 0;
+			
 			//Clear per-frame flags
 			stage.flag &= ~(STAGE_FLAG_JUST_STEP | STAGE_FLAG_SCORE_REFRESH);
 			
@@ -1698,15 +1728,42 @@ void Stage_Tick(void)
 			for (u8 i = 0; i < 4; i++)
 			{
 				//BF
-				note_dst.x = note_x[i ^ stage.note_swap] - FIXED_DEC(16,1);
+				note_dst.x = FIXED_DEC(arrowposx,1) + note_x[i ^ stage.note_swap] - FIXED_DEC(16,1);
 				Stage_DrawStrum(i, &note_src, &note_dst);
 				Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
 				
 				//Opponent
-				note_dst.x = note_x[(i | 0x4) ^ stage.note_swap] - FIXED_DEC(16,1);
-				Stage_DrawStrum(i | 4, &note_src, &note_dst);
-				Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
+				if (stage.middlescroll == 0)
+				{
+					note_dst.x = FIXED_DEC(arrowposx,1) +  note_x[(i | 0x4) ^ stage.note_swap] - FIXED_DEC(16,1);
+					Stage_DrawStrum(i | 4, &note_src, &note_dst);
+					Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
+				}
 			}
+			
+			if (stage.stage_id == StageId_1_1)
+			stage.middlescroll = false;
+			
+			if (stage.stage_id == StageId_1_2)
+			stage.middlescroll = false;
+			
+			if (stage.stage_id == StageId_1_3)
+			stage.middlescroll = true;
+		
+			switch (stage.mode)
+			{
+				case StageMode_2P:
+				case StageMode_Swap:
+				{
+					if (stage.stage_id == StageId_1_3)
+					stage.middlescroll = false;
+				}
+			}
+				
+				
+			
+			if (stage.stage_id == StageId_2_1)
+			stage.middlescroll = false;
 			
 			//Draw score
 			for (int i = 0; i < ((stage.mode >= StageMode_2P) ? 2 : 1); i++)

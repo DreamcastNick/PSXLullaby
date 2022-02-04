@@ -36,6 +36,14 @@ enum
 	Gold_ArcMain_Right2,
 	Gold_ArcMain_Right3,
 	Gold_ArcMain_Right4,
+	Gold_ArcMain_Appear0,
+	Gold_ArcMain_Appear1,
+	Gold_ArcMain_Appear2,
+	Gold_ArcMain_Appear3,
+	Gold_ArcMain_Appear4,
+	Gold_ArcMain_Appear5,
+	Gold_ArcMain_Appear6,
+	Gold_ArcMain_Jump0,
 	
 	Gold_Arc_Max,
 };
@@ -63,10 +71,10 @@ static const CharFrame char_gold_frame[] = {
 	{Gold_ArcMain_Idle5, {  0,   0, 256, 256}, { 125, 250}}, //5 idle 6
 	{Gold_ArcMain_Idle6, {  0,   0, 256, 256}, { 125, 250}}, //6 idle 7
 	
-	{Gold_ArcMain_Left0, {  0,   0, 256, 256}, { 125, 250}}, //7 left 8
-	{Gold_ArcMain_Left1, {  0,   0, 256, 256}, { 125, 250}}, //8 left 9
-	{Gold_ArcMain_Left2, {  0,   0, 256, 256}, { 125, 250}}, //9 left 10
-	{Gold_ArcMain_Left3, {  0,   0, 256, 256}, { 125, 250}}, //10 left 11
+	{Gold_ArcMain_Left0, {  0,   0, 256, 256}, { 175, 250}}, //7 left 8
+	{Gold_ArcMain_Left1, {  0,   0, 256, 256}, { 175, 250}}, //8 left 9
+	{Gold_ArcMain_Left2, {  0,   0, 256, 256}, { 175, 250}}, //9 left 10
+	{Gold_ArcMain_Left3, {  0,   0, 256, 256}, { 175, 250}}, //10 left 11
 	
 	{Gold_ArcMain_Down0, {  0,   0, 256, 256}, { 125, 250}}, //11 down 12
 	{Gold_ArcMain_Down1, {  0,   0, 256, 256}, { 125, 250}}, //12 down 13
@@ -76,23 +84,35 @@ static const CharFrame char_gold_frame[] = {
 	{Gold_ArcMain_Up0, {   0,   0,  256, 256}, { 125, 250}}, //15 up 16
 	{Gold_ArcMain_Up1, {   0,   0,  256, 256}, { 125, 250}}, //16 up 17
 	
-	{Gold_ArcMain_Right0, {  0,   0, 256, 256}, { 125, 250}}, //17 right 18
-	{Gold_ArcMain_Right1, {  0,   0, 256, 256}, { 125, 250}}, //18 right 19
-	{Gold_ArcMain_Right2, {  0,   0, 256, 256}, { 125, 250}}, //19 right 20
-	{Gold_ArcMain_Right3, {  0,   0, 256, 256}, { 125, 250}}, //20 right 21
-	{Gold_ArcMain_Right4, {  0,   0, 256, 256}, { 125, 250}}, //21 right 22
+	{Gold_ArcMain_Right0, {  0,   0, 256, 256}, { 110, 250}}, //17 right 18
+	{Gold_ArcMain_Right1, {  0,   0, 256, 256}, { 110, 250}}, //18 right 19
+	{Gold_ArcMain_Right2, {  0,   0, 256, 256}, { 110, 250}}, //19 right 20
+	{Gold_ArcMain_Right3, {  0,   0, 256, 256}, { 110, 250}}, //20 right 21
+	{Gold_ArcMain_Right4, {  0,   0, 256, 256}, { 110, 250}}, //21 right 22
+	
+	{Gold_ArcMain_Appear0, {  0,   0, 256, 256}, { 125, 250}}, //22 appear 23
+	{Gold_ArcMain_Appear1, {  0,   0, 256, 256}, { 125, 250}}, //23 appear 24
+	{Gold_ArcMain_Appear2, {  0,   0, 256, 256}, { 125, 250}}, //24 appear 25
+	{Gold_ArcMain_Appear3, {  0,   0, 256, 256}, { 125, 250}}, //25 appear 26
+	{Gold_ArcMain_Appear4, {  0,   0, 256, 256}, { 125, 250}}, //26 appear 27
+	{Gold_ArcMain_Appear5, {  0,   0, 256, 256}, { 125, 250}}, //27 appear 28
+	{Gold_ArcMain_Appear6, {  0,   0, 256, 256}, { 125, 250}}, //28 appear 29
+	
+	{Gold_ArcMain_Jump0, {  0,   0, 256, 256}, { 125, 250}}, //29 jumpscare 30
 };
 
 static const Animation char_gold_anim[CharAnim_Max] = {
-	{2, (const u8[]){ 0,  1,  2,  3,  4,  5,  6,  5,  4,  3,  2,  1, ASCR_REPEAT, 1}},      	   //CharAnim_Idle
-	{2, (const u8[]){ 7,  8,  9, 10,  9,  8, ASCR_BACK, 1}},       		   //CharAnim_Left
-	{0, (const u8[]){ASCR_CHGANI, CharAnim_Idle}},                     	   //CharAnim_LeftAlt
-	{2, (const u8[]){ 11, 12,  13,  14,  13,  12, ASCR_BACK, 1}},  		   //CharAnim_Down
-	{0, (const u8[]){ASCR_CHGANI, CharAnim_Idle}},   	          	   //CharAnim_DownAlt
-	{2, (const u8[]){ 15,  16,  15, ASCR_BACK, 1}},                		   //CharAnim_Up
-	{0, (const u8[]){ASCR_CHGANI, CharAnim_Idle}},                             //CharAnim_UpAlt
-	{2, (const u8[]){ 17,  18,  19,  20,  21, 20, 19, 18, 17, ASCR_BACK, 1}}, //CharAnim_Right
-	{0, (const u8[]){ASCR_CHGANI, CharAnim_Idle}},                             //CharAnim_RightAlt
+	{2, (const u8[]){ 0, ASCR_REPEAT, 1}},      	   							      		 //CharAnim_Idle
+	{2, (const u8[]){ 7,  8,  9, 10,  9,  8, ASCR_BACK, 1}},       		              		 //CharAnim_Left
+	{2, (const u8[]){ 29, ASCR_BACK, 1}},                    	         					 //CharAnim_LeftAlt
+	{2, (const u8[]){ 11, 12,  13,  14,  13,  12, ASCR_BACK, 1}},  		                     //CharAnim_Down
+	{2, (const u8[]){ 29, ASCR_BACK, 1}},                    	         					 //CharAnim_DownAlt
+	{2, (const u8[]){ 15,  16,  15, ASCR_BACK, 1}},                		   	        	     //CharAnim_Up
+	{2, (const u8[]){ 29, ASCR_BACK, 1}},                    	         					 //CharAnim_UpAlt
+	{2, (const u8[]){ 17,  18,  19,  20,  21, 20, 19, 18, 17, ASCR_BACK, 1}}, 		  		 //CharAnim_Right
+	{2, (const u8[]){ 29, ASCR_BACK, 1}},                    	         					 //CharAnim_RightAlt
+	{2, (const u8[]){22, 22, 22, 23, 23, 23, 23, 24, 25, 26, 27, 28, ASCR_BACK, 1}},  		 //CharAnim_Appear
+	{2, (const u8[]){28, 27, 26, 25, 24, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, ASCR_BACK, 1}}, 						 //CharAnim_Disappear
 };
 
 //Gold character functions
@@ -116,10 +136,38 @@ void Char_Gold_Tick(Character *character)
 	
 	//Perform idle dance
 	Character_PerformIdle(character);
-	
+
 	//Animate and draw
 	Animatable_Animate(&character->animatable, (void*)this, Char_Gold_SetFrame);
+	
+	if (stage.stage_id == StageId_5_2 && stage.song_step <= 1)
 	Character_Draw(character, &this->tex, &char_gold_frame[this->frame]);
+
+	if (stage.stage_id == StageId_1_3 && stage.song_step >= 1)
+	Character_Draw(character, &this->tex, &char_gold_frame[this->frame]);
+
+	if (stage.stage_id == StageId_5_2 && stage.song_step <= 1)
+	Character_Draw(character, &this->tex, &char_gold_frame[this->frame]);
+
+	if (stage.stage_id == StageId_1_3 && stage.song_step >= 1558)
+	Character_Draw(character, &this->tex, &char_gold_frame[this->frame]);
+
+	if (stage.flag & STAGE_FLAG_JUST_STEP)
+    //Stage specific animations
+	if (stage.note_scroll >= 0)
+	{
+		switch (stage.stage_id)
+		{
+			case StageId_1_3: //Monochrome
+				if ((stage.song_step) == 0)
+					character->set_anim(character, CharAnim_Appear);
+				if ((stage.song_step) == 1552)
+					character->set_anim(character, CharAnim_Disappear);
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void Char_Gold_SetAnim(Character *character, u8 anim)
@@ -189,6 +237,14 @@ Character *Char_Gold_New(fixed_t x, fixed_t y)
 		"right2.tim", //Gold_ArcMain_Right2
 		"right3.tim", //Gold_ArcMain_Right3
 		"right4.tim", //Gold_ArcMain_Right4
+		"appear0.tim", //Gold_ArcMain_Appear0
+		"appear1.tim", //Gold_ArcMain_Appear1
+		"appear2.tim", //Gold_ArcMain_Appear2
+		"appear3.tim", //Gold_ArcMain_Appear3
+		"appear4.tim", //Gold_ArcMain_Appear4
+		"appear5.tim", //Gold_ArcMain_Appear5
+		"appear6.tim", //Gold_ArcMain_Appear6
+		"jump0.tim",   //Gold_ArcMain_Jump0
 		NULL
 	};
 	IO_Data *arc_ptr = this->arc_ptr;

@@ -7,7 +7,7 @@
 #ifndef _GOLD_H
 #define _GOLD_H
 
-#include "../character.h"
+#include "../goldanim.h"
 
 //Clucky character functions
 Character *Char_Gold_New(fixed_t x, fixed_t y);

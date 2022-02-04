@@ -123,7 +123,7 @@ static const CharFrame char_gfsing_frame[] = {
 };
 
 static const Animation char_gfsing_anim[PlayerAnim_Max] = {
-	{2, (const u8[]){ 0,  1,  2,  3,  4,  5,  5, ASCR_REPEAT, 1}},      	   //CharAnim_Idle
+	{2, (const u8[]){ 0,  1,  2,  3,  4,  5,  5, ASCR_BACK, 1}},      	   //CharAnim_Idle
 	{2, (const u8[]){ 6,  7, ASCR_BACK, 1}},       		   		   //CharAnim_Left
 	{1, (const u8[]){ 6,  8, ASCR_BACK, 1}},                      	   	   //CharAnim_LeftAlt
 	{2, (const u8[]){ 9,  10, ASCR_BACK, 1}},  		   		   //CharAnim_Down
